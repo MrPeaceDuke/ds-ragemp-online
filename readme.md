@@ -3,7 +3,7 @@
 
 - Скачиваем все файлы и загружаем в отдельную папку на вашем Linux/Windows хостинге
 
-- Для начала вам нужно создать бота на https://discord.com/developers/.
+- Для начала вам нужно создать бота на https://discord.com/developers/applications/.
 
 - Далее изменить token в файле **config.json**
 
