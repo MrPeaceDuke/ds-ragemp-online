@@ -62,7 +62,7 @@ async function scrapOnline() {
 
 function UpdateChannelName(tempOnline = "0/1000") {
   let cache = client.channels.cache;
-  let channelElement = cache.map((el) => el.name = el.name.toLowerCase()).find((el) => el.name.includes("онлайн:") === true);
+  let channelElement = cache.find((el) => new String(el.name).toLowerCase().includes("онлайн:") === true);
   if (channelElement === undefined) {
     return console.log("Категория не найдена. Проверьте название категории");
   }
