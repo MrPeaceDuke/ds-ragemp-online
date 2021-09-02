@@ -8,7 +8,7 @@ var scraper = webscrape.default();
 
 let online = "0/1000"; //не трогать, максимальный онлайн изменится автоматически
 
-let myServerName = "CCDPlanet | discord.gg/ccdplanet";//изменить на своё, можно указать часть названия своего сервера
+let myServerName = config.serverName;//изменить на своё, можно указать часть названия своего сервера
 
 let minutesForUpdate = 1; //количество минут для обновления онлайна в категории
 

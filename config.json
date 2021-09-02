@@ -1,4 +1,5 @@
 {
     "token" : "change_your_token",
-    "prefix" : "!"
+    "prefix" : "!",
+    "serverName": "your_server_name"
 }
