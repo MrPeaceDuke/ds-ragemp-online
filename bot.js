@@ -1,9 +1,7 @@
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-// const { joinVoiceChannel } = require('@discordjs/voice');
 const config = require("./config.json")
 const token = config.token;
-// const cheerio = require('cheerio');
 
 var webscrape = require('webscrape');
 var scraper = webscrape.default();
@@ -11,6 +9,8 @@ var scraper = webscrape.default();
 let online = "0/1000"; //не трогать, максимальный онлайн изменится автоматически
 
 let myServerName = "CCDPlanet | discord.gg/ccdplanet";//изменить на своё, можно указать часть названия своего сервера
+
+let minutesForUpdate = 1; //количество минут для обновления онлайна в категории
 
 var timer = null;
 
@@ -21,33 +21,29 @@ client.on('ready', () => {
   console.log(client.user.username);
   timer = setInterval(() => {
     UpdateBotName();
-  }, 20000);
+  }, 60000 * minutesForUpdate);
 });
 
 client.on('interactionCreate', async interaction => {
   if (!interaction.isCommand()) return;
-
-  if (interaction.commandName === 'ping') {
-    await interaction.reply('Pong!');
-  }
 });
 
 client.on("messageCreate", message => {
-  if (message.content === "test") {
-    let cache = message.guild.channels.cache;
-    console.log(cache.map((channel) => channel.name).join(","));
-  }
+  // if (message.content === "test") {
+  //   let cache = message.guild.channels.cache;
+  //   console.log(cache.map((channel) => channel.name).join(","));
+  // }
 
-  if (message.channel.name === "bot") {
-    let countMessages = 0;
-    message.channel.messages.fetch().then((messages) => {
-      countMessages = messages.size;
-      message.channel.bulkDelete(countMessages).then(() => {
-        // message.channel.send("Del")
-      })
-        .catch(console.error)
-    });
-  }
+  // if (message.channel.name === "bot") {
+  //   let countMessages = 0;
+  //   message.channel.messages.fetch().then((messages) => {
+  //     countMessages = messages.size;
+  //     message.channel.bulkDelete(countMessages).then(() => {
+  //       // message.channel.send("Del")
+  //     })
+  //       .catch(console.error)
+  //   });
+  // }
 })
 
 function UpdateBotName() {
