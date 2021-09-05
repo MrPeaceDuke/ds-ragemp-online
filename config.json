@@ -1,5 +1,6 @@
 {
     "token" : "change_your_token",
     "prefix" : "!",
-    "serverName": "your_server_name"
+    "serverName": "your_server_name",
+    "timerDelayInMinutes": 1
 }
