@@ -13,7 +13,11 @@ client.on('ready', () => {
   console.log("Бот запущен и приступил к обновлению онлайна")
   client.user.setUsername(myServerName);
   timer = setInterval(() => {
-    scrapOnline();
+    try {
+      scrapOnline();
+    } catch (error) {
+      console.log(error)
+    }
   }, 60000 * minutesForUpdate);
 });
 async function scrapOnline() {
