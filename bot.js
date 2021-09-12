@@ -13,23 +13,26 @@ client.on('ready', () => {
   console.log("Бот запущен и приступил к обновлению онлайна")
   client.user.setUsername(myServerName);
   timer = setInterval(() => {
-    try {
-      scrapOnline();
-    } catch (error) {
-      console.log(error)
-    }
+    scrapOnline();
   }, 60000 * minutesForUpdate);
 });
 async function scrapOnline() {
-  const result = await scraper.get('https://cdn.rage.mp/master/');
-  const servers = JSON.parse(result.body);
-  let server = Object.values(servers).find((el) => el.name.includes(myServerName) === true);
-  if (server !== undefined) {
-    online = server.players + "/" + server.maxplayers;
-    UpdateChannelName(online);
-  } else {
-    console.log("Сервер не найден в мастер листе RageMP")
+  try {
+    const result = await scraper.get('https://cdn.rage.mp/master/');
+    if (result) {
+      const servers = JSON.parse(result.body);
+      let server = Object.values(servers).find((el) => el.name.includes(myServerName) === true);
+      if (server !== undefined) {
+        online = server.players + "/" + server.maxplayers;
+        UpdateChannelName(online);
+      } else {
+        console.log("Сервер не найден в мастер листе RageMP")
+      }
+    }
+  } catch (error) {
+    console.log(error)
   }
+
 }
 function UpdateChannelName(tempOnline = "0/1000") {
   let cache = client.channels.cache;
